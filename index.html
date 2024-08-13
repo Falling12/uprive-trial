@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uprive Designs E-book</title>
+    <meta name="description" content="Download our free e-books about UI/UX design.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js" type="text/javascript"></script>
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+</head>
+
+<body class="flex flex-col gap-14 p-10 items-center min-h-screen overflow-x-hidden">
+    <div class="absolute w-screen h-screen inset-0 z-10 lottie hidden pointer-events-none">
+        <dotlottie-player src="assets/confetti.json" background="transparent" speed="1" style="width: 100%; height: 100%;" direction="1" playMode="normal" loop autoplay></dotlottie-player>
+    </div>
+
+    <img src="assets/close.svg" alt="Close" class="w-8 h-8 self-end cursor-pointer">
+
+    <img src="assets/logo.png" alt="Uprive Designs" class="">
+
+    <main class="flex flex-col gap-5 items-start mt-5 w-full max-w-2xl main-container">
+        <div class="flex items-center gap-2 steps w-full">
+            <div class="bg-blue-500 w-full h-1 rounded-md step step-1 transition-[background]"></div>
+            <div class="bg-[#F1F1F3] w-full h-1 rounded-md step step-2 transition-[background]"></div>
+            <div class="bg-[#F1F1F3] w-full h-1 rounded-md step step-3 transition-[background]"></div>
+            <div class="bg-[#F1F1F3] w-full h-1 rounded-md step step-4 transition-[background]"></div>
+            <div class="bg-[#F1F1F3] w-full h-1 rounded-md step step-5 transition-[background]"></div>
+        </div>
+
+        <div class="flex flex-col gap-5 w-full">
+            <div class="flex flex-col">
+                <h1 class="text-xl font-medium">Ingyenes E-book letöltése</h1>
+                <p class="text-sm">Válaszolj néhány kérdésre, és e-mailben küldjük neked az e-book-ot!</p>
+            </div>
+            <div class="overflow-hidden w-full">
+                <form class="flex transition-transform duration-300 ease-in-out" enctype="multipart/form-data" method="post" id="mainForm" onsubmit="return function(this) {
+                    console.log('Submitted');
+                };">
+                    <div class="min-w-full flex flex-col gap-3 formStep">
+                        <label for="name" class="text-sm font-medium">1. Hogyan szólíthatunk?</label>
+                        <input type="text" placeholder="Add meg a teljes neved!"
+                            class="w-full p-3 bg-[#F1F1F3] border border-[#E3E7E6] rounded-2xl" name="name">
+                    </div>
+
+                    <div class="min-w-full flex flex-col gap-3 formStep">
+                        <label for="email" class="text-sm font-medium">2. Hová küldhetjük az e-bookot?</label>
+                        <input type="email" placeholder="Add meg az email címed!"
+                            class="w-full p-3 bg-[#F1F1F3] border border-[#E3E7E6] rounded-2xl" name="email">
+                    </div>
+
+                    <div class="min-w-full flex flex-col gap-3 formStep">
+                        <label for="tel" class="text-sm font-medium">3. Mi a telefonszámod?</label>
+                        <input type="tel" placeholder="Add meg a telefonszámod (opcionális)"
+                            class="w-full p-3 bg-[#F1F1F3] border border-[#E3E7E6] rounded-2xl" name="tel">
+                    </div>
+
+                    <div class="min-w-full flex flex-col gap-3 formStep">
+                        <label for="project" class="text-sm font-medium">4. Miről szól a projekt amin dolgozni szeretnél?</label>
+                        <input type="text" placeholder="Írd le pár szóban, milyen ötletet szeretnél megvalósítani."
+                            class="w-full p-3 bg-[#F1F1F3] border border-[#E3E7E6] rounded-2xl" name="project">
+                    </div>
+
+                    <div class="min-w-full flex flex-col gap-3 formStep">
+                        <label for="date" class="text-sm font-medium">5. Mikor tervezed indítani a projektet?</label>
+                        <input type="text" placeholder="Ideális esetben mikor tervezed az indítást?"
+                            class="w-full p-3 bg-[#F1F1F3] border border-[#E3E7E6] rounded-2xl" name="date">
+
+                        <div class="flex items-center gap-2 hidden check">
+                            <input type="checkbox" id="aszf" name="aszf" value="true"
+                                class="rounded-md">
+                            <label for="newsletter" class="text-sm">Elfogadom az <a href="#" class="underline">Adatkezelési Nyilatkozatot</a>.</label>
+                        </div>
+
+                        <div class="flex items-center gap-2 hidden check">
+                            <input type="checkbox" id="newsletter" name="newsletter" value="true"
+                                class="rounded-md">
+                            <label for="newsletter" class="text-sm">Szeretnék ingyenes E-bookokat kapni a jövőben.</label>
+                        </div>
+
+                        <button type="button" class="text-white w-full px-4 py-3 rounded-full bg-gradient-to-b from-[#3A77F4] to-[#4B8AFE] hidden submit-button cursor-pointer text-center" onclick="handleSubmission()">Küldés</b>
+                    </div>
+                </form>
+            </div>
+
+            <p class="text-xs text-red-500 hidden error-message">Kérlek töltsd ki az összes mezőt!</p>
+            <button
+                class="text-white w-full px-4 py-3 rounded-full bg-gradient-to-b from-[#3A77F4] to-[#4B8AFE] next-button"
+                onclick="nextStep()">Következő</button>
+        </div>
+    </main>
+
+    <main class="hidden flex-col gap-5 items-center mt-5 w-full max-w-2xl success-container">
+        <h1 class="text-xl font-medium">Köszönjük, hogy válaszoltál! 👍🏻</h1>
+
+        <p class="text-sm text-center">Az e-bookot elküldtük a <span class="success-email"></span> e-mail címre!</p>
+
+        <p class="text-sm text-center">Az első 14 szerencsés közé tartozol, akik ingyenes konzultációt kapnak. Ne hagyd ki ezt az exkluzív lehetőséget! Foglald le most az időpontodat, és fedezd fel, hogyan segíthetünk projekted megvalósításában!</p>
+
+        <button
+        class="text-white w-fit px-4 py-3 rounded-full bg-gradient-to-b from-[#3A77F4] to-[#4B8AFE]">Lefoglalom az ingyenes konzultációt</button>
+
+        <a href="#" class="text-[#407EF8] font-medium">Projektek böngészése</a>
+    </main>
+</body>
+
+</html>
